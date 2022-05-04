@@ -7,7 +7,7 @@ import (
 
 const (
 	AddSrv      = ":8080"
-	TemplateDir = "/home/zero/www/check/go-wasm/public"
+	TemplateDir = "public"
 )
 
 func main() {
