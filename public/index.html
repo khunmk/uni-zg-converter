@@ -38,6 +38,16 @@
     <textarea id="zg-input" name="uni_input" cols="80" rows="20">သီဟိုဠ်မှ ဉာဏ်ကြီးရှင်သည် အာယုဝဍ္ဎနဆေးညွှန်းစာကို ဇလွန်ဈေးဘေး ဗာဒံပင်ထက် အဓိဋ္ဌာန်လျက် ဂဃနဏဖတ်ခဲ့သည်။</textarea>
     <textarea id="uni-input" name="zg_input" cols="80" rows="20">သီဟိုဠ္မွ ဉာဏ္ႀကီးရွင္သည္ အာယုဝၯနေဆးၫႊန္းစာကို ဇလြန္ေဈးေဘး ဗာဒံပင္ထက္ အဓိ႒ာန္လ်က္ ဂဃနဏဖတ္ခဲ့သည္။</textarea>
 
+    <hr>
+
+    <div>
+        <input type="file" name="file_input" id="file_input" multiple="true">
+    </div>
+
+    <div>
+        <input type="file" name="file_input2" id="file_input2">
+    </div>
+
     <h4>Next to do</h4>
     <p>
         <ol>
@@ -47,30 +57,12 @@
     </p>
 
     <script>
-        // var json = function(input) {
-        //     // jsonoutput.value = formatJson(input)
-        //     // var result = zg2uni(input)
-        //     // console.log("Value returned from Go", result)
-        // }
-        // var input = document.getElementById("jsoninput")
-        // input.addEventListener("input", (e) => {
-        //     var result = zg2uni(e.target.value)
-        //     if (( result != null) && ('error' in result)) {
-        //         console.log("Go return value", result)
-        //         jsonoutput.value = ""
-        //         alert(result.error)
-        //     }
-        // })
-       
-        // var fileEle = document.getElementById("file_input")
-        // fileEle.addEventListener("change", (e) => {
-        //     e.preventDefault();
-
-        //     Array.from(e.target.files).forEach(file => {
-        //         convertTo(file)
-        //     })
-        // })
-
+        var fileInput = document.getElementById("file_input2")
+        fileInput.addEventListener("change", (e) => {
+            Array.from(e.target.files).forEach(f => {
+                localStorage.setItem("item", f)
+            })
+        })
     </script>
 </body>
 </html>

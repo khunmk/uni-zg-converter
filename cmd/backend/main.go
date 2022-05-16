@@ -30,9 +30,14 @@ func main() {
 		log.Fatalln("unable to get element")
 	}
 
+	fileInputEle := document.Call("getElementById", "file_input")
+	if !fileInputEle.Truthy() {
+		log.Fatalln("unable to get element")
+	}
+
 	uniInputEle.Call("addEventListener", "input", toZg(zgInputEle))
 	zgInputEle.Call("addEventListener", "input", toUni(uniInputEle))
-	js.Global().Set("convertTo", convertTo())
+	fileInputEle.Call("addEventListener", "change", onFileInput())
 
 	<-c
 }
@@ -72,12 +77,47 @@ func toZg(outputEle js.Value) js.Func {
 	return cb
 }
 
-/**
- * Todo :::
- */
-func convertTo() js.Func {
+func onFileInput() js.Func {
 	cb := js.FuncOf(func(this js.Value, args []js.Value) any {
-		// fmt.Println(args[0].Type().String())
+		length := this.Get("files").Length()
+
+		for i := 0; i < length; i++ {
+			fileEle := this.Get("files").Call("item", i)
+
+			fileName := fileEle.Get("name").String()
+
+			fmt.Println(fileName)
+
+			// file, err := ioutil.TempFile("dir", "prefix")
+			// if err != nil {
+			// 	log.Fatal(err)
+			// }
+			// defer os.Remove(file.Name())
+
+			// fileEle.Call("arrayBuffer").Call("then", js.FuncOf(func(this js.Value, args []js.Value) any {
+			// 	data := js.Global().Get("Uint8Array").New(args[0])
+			// 	dst := make([]byte, data.Get("length").Int())
+			// 	js.CopyBytesToGo(dst, data)
+
+			// 	r := bytes.NewReader(dst)
+
+			// 	buf := make([]byte, 4)
+			// 	for {
+			// 		n, err := r.Read(buf)
+			// 		if err == io.EOF {
+			// 			break
+			// 		}
+
+			// 		fmt.Println(string(buf[:n]))
+			// 	}
+
+			// 	// f, _ := os.Create("temp.txt")
+			// 	// defer f.Close()
+			// 	// f.Write()
+
+			// 	return nil
+			// }))
+		}
 
 		return nil
 	})
