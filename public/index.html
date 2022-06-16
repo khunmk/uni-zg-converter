@@ -10,6 +10,25 @@
         .text-red {
             color:tomato;
         }
+        .p2 {
+            padding:10px;
+        }
+
+        .row {
+            display: block;
+        }
+        .col {
+            width: 100%;
+        }
+        .form-control {
+            width: 100%;
+        }
+
+        @media (min-width: 600px) {
+            .row {
+                display: flex;
+            }
+        }
     </style>
     <script>
         const go = new Go();
@@ -29,14 +48,25 @@
 </head>
 <body>
     <h1>Myanmar Unicode Converter</h1>
-    <p>Note:: This is just a little modify version of <a href="https://www.rabbit-converter.org/Rabbit" target="_blank">Rabbit Converter</a> using WebAssembly.</p>
+    <p>Note:: This is just a little modify version of <a href="https://www.rabbit-converter.org/Rabbit" target="_blank" rel="noopener">Rabbit Converter</a> using WebAssembly.</p>
     <p>It is just for fun playing.</p>
     <p>And totally credit and thank to the creator of rabbit converter.</p>
-    <p>Please go and check out their repo <a href="https://github.com/Rabbit-Converter/Rabbit" target="_blank">https://github.com/Rabbit-Converter/Rabbit</a></p>
+    <p>Please go and check out their repo <a href="https://github.com/Rabbit-Converter/Rabbit" target="_blank" rel="noopener">https://github.com/Rabbit-Converter/Rabbit</a></p>
 
-
-    <textarea id="uni-input" name="uni_input" cols="80" rows="20">သီဟိုဠ်မှ ဉာဏ်ကြီးရှင်သည် အာယုဝဍ္ဎနဆေးညွှန်းစာကို ဇလွန်ဈေးဘေး ဗာဒံပင်ထက် အဓိဋ္ဌာန်လျက် ဂဃနဏဖတ်ခဲ့သည်။</textarea>
-    <textarea id="zg-input" name="zg_input" cols="80" rows="20">သီဟိုဠ္မွ ဉာဏ္ႀကီးရွင္သည္ အာယုဝၯနေဆးၫႊန္းစာကို ဇလြန္ေဈးေဘး ဗာဒံပင္ထက္ အဓိ႒ာန္လ်က္ ဂဃနဏဖတ္ခဲ့သည္။</textarea>
+    <div class="row">
+        <div class="col">
+            <div class="p2">
+                <label for="uni-input">Unicode</label><br>
+                <textarea id="uni-input" class="form-control" name="uni_input" rows="20">သီဟိုဠ်မှ ဉာဏ်ကြီးရှင်သည် အာယုဝဍ္ဎနဆေးညွှန်းစာကို ဇလွန်ဈေးဘေး ဗာဒံပင်ထက် အဓိဋ္ဌာန်လျက် ဂဃနဏဖတ်ခဲ့သည်။</textarea>
+            </div>
+        </div>
+        <div class="col">
+            <div class="p2">
+                <label for="zg-input">Zawgyi</label><br>
+                <textarea id="zg-input" class="form-control" name="zg_input" rows="20">သီဟိုဠ္မွ ဉာဏ္ႀကီးရွင္သည္ အာယုဝၯနေဆးၫႊန္းစာကို ဇလြန္ေဈးေဘး ဗာဒံပင္ထက္ အဓိ႒ာန္လ်က္ ဂဃနဏဖတ္ခဲ့သည္။</textarea>
+            </div>        
+        </div>
+    </div>
 
     <hr>
 
