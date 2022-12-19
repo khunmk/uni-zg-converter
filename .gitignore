@@ -2,3 +2,4 @@
 bin/*
 go.sum
 public.tar.gz
+build.sh
