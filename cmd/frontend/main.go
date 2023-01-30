@@ -28,25 +28,7 @@ func main() {
 	_ = addr
 
 	router := gin.Default()
-	router.GET("/", func(c *gin.Context) {
-		tpl, err := template.ParseFS(Res, "static/index.html")
-		if err != nil {
-			c.Writer.Header().Set("Content-Type", "text/html")
-			c.Writer.WriteHeader(http.StatusInternalServerError)
-			c.Writer.Write([]byte(err.Error()))
-			return
-		}
-
-		c.Writer.Header().Set("Content-Type", "text/html")
-		c.Writer.WriteHeader(http.StatusOK)
-		if err := tpl.Execute(c.Writer, map[string]interface{}{
-			// "email": "myemail@gmail.com",
-		}); err != nil {
-			c.Writer.WriteHeader(http.StatusInternalServerError)
-			c.Writer.Write([]byte(err.Error()))
-			return
-		}
-	})
+	router.GET("/", getHome)
 	router.GET("/wasm_exec.js", func(c *gin.Context) {
 		tpl, err := template.ParseFS(Res, "static/wasm_exec.js")
 		if err != nil {
@@ -64,24 +46,36 @@ func main() {
 		}
 	})
 	/*
-		router.GET("/main.wasm", func(c *gin.Context) {
-			tpl, err := template.ParseFS(Res, "static/main.wasm")
+				router.GET("/main.wasm", func(c *gin.Context) {
+					tpl, err := template.ParseFS(Res, "static/main.wasm")
+					if err != nil {
+						c.Writer.Header().Set("Content-Type", "text/html")
+						c.Writer.WriteHeader(http.StatusInternalServerError)
+						c.W
+		func getHome(c *gin.Context) {
+			tpl, err := template.ParseFS(Res, "static/index.html")
 			if err != nil {
 				c.Writer.Header().Set("Content-Type", "text/html")
 				c.Writer.WriteHeader(http.StatusInternalServerError)
 				c.Writer.Write([]byte(err.Error()))
 				return
 			}
+
 			c.Writer.Header().Set("Content-Type", "text/html")
 			c.Writer.WriteHeader(http.StatusOK)
-			if err := tpl.Execute(c.Writer, map[string]interface{}{
+			if err := tpl.Execute(c.Writer, gin.H{
 				// "email": "myemail@gmail.com",
 			}); err != nil {
 				c.Writer.WriteHeader(http.StatusInternalServerError)
 				c.Writer.Write([]byte(err.Error()))
 				return
-			}
-		})
+			}"email": "myemail@gmail.com",
+					}); err != nil {
+						c.Writer.WriteHeader(http.StatusInternalServerError)
+						c.Writer.Write([]byte(err.Error()))
+						return
+					}
+				})
 	*/
 	router.StaticFile("/main.wasm", "main.wasm")
 
@@ -95,5 +89,25 @@ func main() {
 	log.Printf("Server is listening on port :%v\n", *port)
 	if err := server.ListenAndServe(); err != nil {
 		panic(err)
+	}
+}
+
+func getHome(c *gin.Context) {
+	tpl, err := template.ParseFS(Res, "static/index.html")
+	if err != nil {
+		c.Writer.Header().Set("Content-Type", "text/html")
+		c.Writer.WriteHeader(http.StatusInternalServerError)
+		c.Writer.Write([]byte(err.Error()))
+		return
+	}
+
+	c.Writer.Header().Set("Content-Type", "text/html")
+	c.Writer.WriteHeader(http.StatusOK)
+	if err := tpl.Execute(c.Writer, gin.H{
+		// "email": "myemail@gmail.com",
+	}); err != nil {
+		c.Writer.WriteHeader(http.StatusInternalServerError)
+		c.Writer.Write([]byte(err.Error()))
+		return
 	}
 }
