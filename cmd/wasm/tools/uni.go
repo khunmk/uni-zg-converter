@@ -27,7 +27,7 @@ func toUni(this js.Value, i []js.Value) interface{} {
 func toZg(this js.Value, i []js.Value) interface{} {
 	str := js.ValueOf(i[0]).String()
 
-	outputTxt, err := utils.Zg2uni(str)
+	outputTxt, err := utils.Uni2zg(str)
 	if err != nil {
 		return map[string]interface{}{
 			"code": 500,
