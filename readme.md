@@ -13,13 +13,18 @@ And totally credit and thank to the creator of rabbit converter.
 - [Feenob Converter](https://converter.feenob.xyz)
 
 #### How to
-- `GOOS=js GOARCH=wasm go build -o public/main.wasm cmd/backend/main.go`
 
-- `go run cmd/frontend/main.go`
+build `main.wasm` file
+
+- `GOOS=js GOARCH=wasm go build -o cmd/app/static/main.wasm cmd/wasm/main.go`
+
+run the application
+
+- `go run cmd/app/main.go`
 
 - Visit `localhost:8080`
 
 #### Next to do
+
 - Add function to convert files like csv, txt, or excel and word
 - Add function for offline use (service worker).
-

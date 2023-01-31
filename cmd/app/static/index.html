@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Myanmar Unicode Converter </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Myanmar Unicode Converter</h1>
+        <p>Note:: This is just a little modify version of <a href="https://www.rabbit-converter.org/Rabbit"
+                target="_blank" rel="noopener">Rabbit Converter</a> using WebAssembly.</p>
+        <p>It is just for fun playing.</p>
+
+        <h4>Source:</h4>
+        <p>Github repo : <a target="_blank" href="https://github.com/khunmk/uni-zg-converter">Uni-Zg-Converter</a></p>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <label for="uni-input">Unicode</label><br>
+                <textarea id="uni-input" class="form-control" name="uni_input" rows="20">{{ .uniTxt }}</textarea>
+            </div>
+            <div class="col-lg-6">
+                <label for="zg-input">Zawgyi</label><br>
+                <textarea id="zg-input" class="form-control" name="zg_input" rows="20">{{ .zgTxt }}</textarea>
+            </div>
+        </div>
+
+        <hr class="mb-3">
+
+        <h2>Convert text file</h2>
+        <p>If you insert zawgyi file, it will convert to unicode.</p>
+        <p>If you insert unicode file, it will convert to zawgyi.</p>
+        <div class="form-group">
+            <label for="txtFileInput">Choose text file</label>
+            <input type="file" id="txtFileInput">
+        </div>
+
+        <hr class="mb-3">
+
+        <h4>Next to do</h4>
+        <p>
+        <ol>
+            <li>Add function to convert files like csv, txt, or excel and word</li>
+            <li>Add function for offline use (service worker).</li>
+        </ol>
+        </p>
+    </div>
+
+    <script src="/wasm_exec.js"></script>
+    <script src="/main.js"></script>
+</body>
+
+</html>
